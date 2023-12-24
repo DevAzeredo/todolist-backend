@@ -1,20 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Task } from 'src/entities/task.entity';
+import { TaskEntity } from 'src/entities/task.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class TasksService {
     constructor(
-        @InjectRepository(Task)
-        private readonly taskRepository: Repository<Task>,
+        @InjectRepository(TaskEntity)
+        private readonly taskRepository: Repository<TaskEntity>,
       ) {}
 
-      async create(task: Task): Promise<Task> {
+      async create(task: TaskEntity): Promise<TaskEntity> {
         return this.taskRepository.save(task);
       }
     
-      async update(task: Task): Promise<Task | undefined> {
+      async update(task: TaskEntity): Promise<TaskEntity | undefined> {
         await this.taskRepository.update(task.id, task);
         return this.taskRepository.findOne({ where: { id: task.id } });
       }
@@ -22,7 +22,7 @@ export class TasksService {
       async remove(id: string): Promise<void> {
         await this.taskRepository.delete(id);
       }
-      async findAll(): Promise<Task[]> {
+      async findAll(): Promise<TaskEntity[]> {
         return this.taskRepository.find();
       }
     

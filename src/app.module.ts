@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Task } from './entities/task.entity';
+import { TaskEntity } from './entities/task.entity';
 import { TasksModule } from './tasks/tasks.module';
 import { ConfigModule } from '@nestjs/config';
 
@@ -13,12 +13,12 @@ import { ConfigModule } from '@nestjs/config';
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url: process.env.MONGODB_URI,
-      entities: [Task],
+      entities: [TaskEntity],
       synchronize: true,
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
-    TypeOrmModule.forFeature([Task]),
+    TypeOrmModule.forFeature([TaskEntity]),
     TasksModule,
   ],
   controllers: [AppController],
