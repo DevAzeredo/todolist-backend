@@ -11,7 +11,7 @@ export class TasksController {
     }
 
     @Post()
-  async create(@Body() task: TaskEntity): Promise<TaskEntity> {
+  async create(@Body() task: TaskEntity[]): Promise<TaskEntity[]> {
     return this.tasksService.create(task);
   }
 
