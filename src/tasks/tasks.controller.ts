@@ -12,11 +12,13 @@ export class TasksController {
 
     @Post()
   async create(@Body() task: TaskEntity[]): Promise<TaskEntity[]> {
+    console.log('entrou aqui aaa');
+    console.log(task);
     return this.tasksService.create(task);
   }
 
-  @Put(':id')
-  async update(@Body() task: TaskEntity): Promise<TaskEntity | undefined> {
+  @Put()
+  async update(@Body() task: TaskEntity[]): Promise<TaskEntity[] | undefined> {
     return this.tasksService.update(task);
   }
 

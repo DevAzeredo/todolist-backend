@@ -13,9 +13,9 @@ export class TasksService {
     const createdTasks = await Promise.all(tasks.map(task => this.taskRepository.save(task)));
     return createdTasks;
   }
-  async update(task: TaskEntity): Promise<TaskEntity | undefined> {
-    await this.taskRepository.update(task.id, task);
-    return this.taskRepository.findOne({ where: { id: task.id } });
+  async update(task: TaskEntity[]): Promise<TaskEntity[] | undefined> {
+     task.forEach(t=> this.taskRepository.update(t.id, t));
+     return task
   }
 
   async remove(id: string): Promise<void> {

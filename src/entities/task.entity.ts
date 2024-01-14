@@ -5,9 +5,6 @@ export class TaskEntity {
   @ObjectIdColumn()
   id: ObjectId;
 
-  @Column({ length: 100 })
-  title: string;
-
   @Column()
   description: string;
 
